@@ -1,0 +1,63 @@
+<div id="predict" class="container">
+    <div class="form-box">
+        <div class="outform">
+            <!-- Main Input For Receiving Query to our ML -->
+            <form class="form" action="{{ url_for('predict')}}" method="post">
+                <div class="title">Greetings explorer,<br><span>Fill in the below values</span></div>
+                <input class="input" name="ra" placeholder="RA" required="required"> 
+                <input class="input" name="declanation" placeholder="Dec" required="required">
+                <input class="input" name="u" placeholder="U" required="required">
+                <input class="input" name="g" placeholder="G" required="required">
+                <input class="input" name="r" placeholder="R" required="required">
+                <input class="input" name="i" placeholder="I" required="required">
+                <input class="input" name="z" placeholder="Z" required="required">
+                <input class="input" name="mjd" placeholder="MJD" required="required">
+                <input class="input" name="plate" placeholder="PLATE" required="required">
+                <input class="input" name="fiberid" placeholder="FIBERID" required="required">
+                <input class="input" name="rs" placeholder="Redshift" required="required">
+                <button type="submit" class="btn-primary">Let`s go →</button>
+                <div id="prediction-result">
+                    {{ prediction_text }}
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="image-box">
+        <div class="image">
+            <div class="title">Image viewer</div>
+            {% if image_url %}
+                <img src="{{ image_url }}" alt="Space Object Image">
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<!--
+<div id = "predict" class = "fullViewportDiv">
+    <div class = "outbox">
+      <div id = "out" class="outform">
+          <form class="form" action="{{ url_for('predict')}}" method="post">
+            <div class="title">Greetings explorer,<br><span>Fill in the below values</span></div>
+            <input class="input" name="declanation" placeholder="Dec" required="required">
+            <input class="input" name="u" placeholder="U" required="required">
+            <input class="input" name="g" placeholder="G" required="required">
+            <input class="input" name="r" placeholder="R" required="required">
+            <input class="input" name="i" placeholder="I" required="required">
+            <input class="input" name="z" placeholder="Z" required="required">
+            <input class="input" name="rs" placeholder="Redshift" required="required">
+            <button type="submit" class="btn-primary">Let`s go →</button>
+            <div id="prediction-result">
+              {{ prediction_text }}
+            </div>      
+          </form>
+        <br>
+      </div>
+    </div>
+</div> -->
