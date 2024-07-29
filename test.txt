@@ -1,0 +1,89 @@
+import streamlit as st
+import pandas as pd
+import sqlite3
+
+# Function to load data from a SQLite table
+def load_data(table_name):
+    conn = sqlite3.connect('data_release.db')
+    query = f"SELECT * FROM {table_name}"
+    df = pd.read_sql(query, conn)
+    conn.close()
+    return df
+
+# Streamlit app
+st.title('Data Release Analysis')
+
+# Sidebar for table selection
+selected_dr = st.sidebar.selectbox('Select the required DR:', ['DR18', 'DR17', 'DR16', 'DR15'])
+
+# Mapping the selection to table names
+table_mapping = {
+    'DR18': 'dr18',
+    'DR17': 'dr17',
+    'DR16': 'dr16',
+    'DR15': 'dr15'
+}
+
+# Load data from the selected table
+data = load_data(table_mapping[selected_dr])
+
+# Display the data
+st.write(f"Data from {selected_dr} table:")
+st.dataframe(data)
+
+
+
+
+# Filter the dataset to find a row that matches the predicted class
+    filtered_data = data[data['class'] == prediction]
+    selected_row = filtered_data.sample(n=1).iloc[0]
+
+    # Extract parameters for the APIs
+    ra = selected_row['ra']
+    dec = selected_row['dec']
+    spaceobj_id = selected_row['specobjid']
+
+    # Construct the API URLs
+    image_url = f"http://skyservice.pha.jhu.edu/dr1/ImgCutout/getjpeg.aspx?ra={ra}&dec={dec}&width=512&height=512&opt=OG"
+    spectral_url = f"http://skyserver.sdss.org/dr1/en/get/specById.asp?ID={spaceobj_id}"
+
+
+
+
+
+
+# Filter the dataset to find a row that matches the predicted class
+    filtered_data = data[data['class'] == prediction]
+    selected_row = filtered_data.sample(n=1).iloc[0]
+
+    # Extract parameters for the APIs
+    ra = selected_row['ra']
+    dec = selected_row['dec']
+    spaceobj_id = selected_row['specobjid']
+
+    # Construct the API URLs
+    image_url = f"http://skyservice.pha.jhu.edu/dr1/ImgCutout/getjpeg.aspx?ra={ra}&dec={dec}&width=512&height=512&opt=OG"
+    spectral_url = f"http://skyserver.sdss.org/dr1/en/get/specById.asp?ID={spaceobj_id}"
+
+
+
+
+
+
+prediction_label = label_mapping[prediction]
+    
+    # Filter the dataset to find a row that matches the predicted class
+    filtered_data = data[data['class'] == prediction]
+    selected_row = filtered_data.sample(n=1).iloc[0]
+
+    # Extract parameters for the APIs
+    ra = selected_row['ra']
+    dec = selected_row['dec']
+    spaceobj_id = selected_row['specobjid']
+
+    # Construct the API URLs
+    image_url = f"http://skyservice.pha.jhu.edu/dr1/ImgCutout/getjpeg.aspx?ra={ra}&dec={dec}&width=512&height=512&opt=OG"
+    spectral_url = f"http://skyserver.sdss.org/dr1/en/get/specById.asp?ID={spaceobj_id}"
+
+    return render_template("index.html", prediction_text=f"The space object is {prediction}",
+                           image_url=image_url, spectral_url=spectral_url)

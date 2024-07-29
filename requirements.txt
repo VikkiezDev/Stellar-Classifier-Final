@@ -1,0 +1,12 @@
+pandas
+numpy
+scikit-learn
+xgboost
+Flask==2.3.2
+altair
+plotly
+matplotlib
+seaborn
+astropy
+db-sqlite3
+datetime
