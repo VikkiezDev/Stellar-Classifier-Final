@@ -22,6 +22,10 @@ def launch_streamlit():
 def Home():
     return render_template("index.html")
 
+@flask_app.route('/papers')
+def papers():
+    return render_template('papers.html')
+
 @flask_app.route("/predict", methods=["POST"])
 def predict():
     float_features = [float(x) for x in request.form.values()]
